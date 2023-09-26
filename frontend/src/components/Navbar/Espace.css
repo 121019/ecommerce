@@ -1,0 +1,44 @@
+.espace {
+    text-align: center;
+  }
+  
+  .espace h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
+    color:  rgb(212, 139, 50);
+  }
+  
+  .espace-cards {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 3rem;
+    gap: 5rem;
+    padding-bottom: 7rem;
+  }
+  
+  .espace-card {
+    width: calc(33.33% - 20px);
+    padding: 6rem;
+    margin-bottom: 3.5rem;  
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 10px  rgb(124, 70, 4); 
+    cursor: pointer;
+    transition: all 0.8s ease;
+  }
+  
+  .espace-card h2 {
+    font-size: 1.7rem;
+    color:  rgb(212, 139, 50);;
+  }
+  
+  .espace-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px  rgb(212, 139, 50);
+  }
+  
+  .espace-card:hover {
+    cursor: pointer;
+  }
+  
