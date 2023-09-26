@@ -1,0 +1,16 @@
+/* Whoarewe.css */
+
+.whoarewe {
+    text-align: center; /* Centre le texte horizontalement */
+    font-size: 1.5rem;
+    color:  rgb(212, 139, 50);
+
+  }
+  
+  .whoarewe p {
+    font-style: italic; /* Met le texte en italique */
+    padding-bottom:45rem;
+    font-size: 1.5rem;
+    padding-top: 5rem;
+  }
+  

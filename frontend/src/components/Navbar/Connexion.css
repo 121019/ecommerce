@@ -1,0 +1,81 @@
+/* Connexion.css */
+
+/* Centrer verticalement et horizontalement */
+.connexion_customer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1.8rem;
+    padding-top: 4rem;
+  }
+
+  p{
+    color: rgb(212, 139, 50);
+  }
+  
+  /* Titre */
+  .connexion_customer p {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  /* Conteneur du formulaire */
+  .Connexion-connexion_customer1 {
+    width: 30%;
+    text-align: center;
+    color:rgb(218, 124, 9);
+  }
+  
+  /* Titre "Vous êtes connecté" (message de succès) */
+  .Connexion-connexion_customer1 h4 {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  /* Formulaire */
+  .customerLogin_form_container1 {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Div pour chaque champ de saisie */
+  #div_input_email,
+  #div_input_password {
+    margin-bottom: 1rem;
+    
+  }
+  
+  /* Libellé du champ de saisie */
+  label {
+    font-weight: bold;
+    color: rgb(212, 139, 50)
+  }
+  
+  /* Champ de saisie */
+  .customer-form-container-info1 {
+    width: 103%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    height: 2rem;
+    color: rgb(212, 139, 50);
+    
+  }
+  
+  /* Bouton "Mot de passe oublié" */
+  .forgot-password-link {
+    background: none;
+    border: none;
+    padding:2rem;
+    text-align: center;
+    color: rgb(212, 139, 50);  
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+  }
+  
+  .forgot-password-link:hover {
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,47 @@
+body{
+    margin:0;
+
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 10px 20px;
+  background-color: rgb(212, 139, 50);
+  background-color: rgb(245, 176, 93);
+  color: #fff;
+  padding: 2rem;
+  }
+  
+
+  
+  .nav-links {
+    list-style: none;
+  display: flex;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1; 
+  }
+  
+  .nav-links li {
+    font-size: 1.2rem; 
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+.panier {
+margin-left: 5rem; 
+ }
+
+ .nav-links .panier {
+  margin-left: auto; /* Placez Panier tout à droite */
+}
+
+.logo {
+  margin-left: 5rem;  
+}
