@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./Inscription.css";  
-
+import "./Inscription.css";
 
 function Inscription() {
   const [formData, setFormData] = useState({
@@ -16,26 +15,22 @@ function Inscription() {
     phone: "",
   });
 
-  
   // Récupérer les données du formulaire d'inscription
   const newUser = {
-    name: 'John',
-    firstname: 'Doe',
-    email: 'john.doe@example.com',
-    password: 'motdepasse',
-    address: '123 Rue de la Rue',
-    city: 'Ville',
-    postcode: '12345',
-    phone: '0650405090',
+    name: "John",
+    firstname: "Doe",
+    email: "john.doe@example.com",
+    password: "motdepasse",
+    address: "123 Rue de la Rue",
+    city: "Ville",
+    postcode: "12345",
+    phone: "0650405090",
   };
-  
-
 
   const [envoiMessage, setEnvoiMessage] = useState(false);
 
   const navigate = useNavigate();
 
-  
   const [error, setError] = useState("");
 
   const handleInputChange = (event) => {
@@ -63,9 +58,7 @@ function Inscription() {
 
     // Effectuer la requête d'inscription
     fetch(
-      `${
-        import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5080"
-      }/Espace`,  
+      `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5080"}/Espace`,
       {
         method: "post",
         headers: {
@@ -107,8 +100,6 @@ function Inscription() {
     <div className="inscription_customer">
       <p>Nouveau Client</p>
       <div className="Inscription-inscription_customer1">
-     
-
         <h4>{envoiMessage && <p>Votre inscription est validée !</p>}</h4>
 
         <div className="customerRegistration_form_container1">
@@ -159,16 +150,16 @@ function Inscription() {
               />
             </label>
             <label>
-           <input
-              className="customer-form-container-info2"
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              placeholder="Confirmer le Mot de passe *"
-              id="confirmPassword"
-              required
-            />
+              <input
+                className="customer-form-container-info2"
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                placeholder="Confirmer le Mot de passe *"
+                id="confirmPassword"
+                required
+              />
             </label>
             <label>
               <input
