@@ -28,7 +28,7 @@ function ShoppingCart() {
 
   const calculateTVA = () => {
     const totalHT = calculateTotalHT();
-    const tvaRate = 0.20; // Taux de TVA à 20%
+    const tvaRate = 0.2; // Taux de TVA à 20%
 
     const tvaAmount = totalHT * tvaRate;
 
@@ -37,7 +37,7 @@ function ShoppingCart() {
 
   const calculateTotalTTC = () => {
     const totalHT = calculateTotalHT();
-    const tvaRate = 0.20; // Taux de TVA à 20%
+    const tvaRate = 0.2; // Taux de TVA à 20%
 
     const tvaAmount = calculateTVA();
     const totalTTC = totalHT + tvaAmount;
