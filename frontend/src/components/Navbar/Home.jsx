@@ -24,7 +24,7 @@ function Home() {
       <h3>Nouveautés</h3>
       <div className="news">
         <Link
-          to="/article1"
+          to="/bracelet"
           img
           src="bracelet.jpg"
           className="article"
@@ -34,7 +34,7 @@ function Home() {
           <p>Prix : 10 €</p>
         </Link>
         <Link
-          to="/article2"
+          to="/collier"
           img
           src="collier.jpg"
           className="article"

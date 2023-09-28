@@ -7,6 +7,7 @@ function Inscription() {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
+    dateofbirth: "",
     email: "",
     password: "",
     address: "",
@@ -15,17 +16,17 @@ function Inscription() {
     phone: "",
   });
 
-  // Récupérer les données du formulaire d'inscription
-  const newUser = {
-    name: "John",
-    firstname: "Doe",
-    email: "john.doe@example.com",
-    password: "motdepasse",
-    address: "123 Rue de la Rue",
-    city: "Ville",
-    postcode: "12345",
-    phone: "0650405090",
-  };
+    const user = {
+      name: "John",
+      firstname: "Doe",
+      dateofbirth: "01/01/2000",
+      email: "john.doe@example.com",
+      password: "motdepasse",
+      address: "123 Rue de la Rue",
+      city: "Ville",
+      postcode: "12345",
+      phone: "0650405090",
+    };
 
   const [envoiMessage, setEnvoiMessage] = useState(false);
 
@@ -41,13 +42,17 @@ function Inscription() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+
+    
+    console.log("ENTER SUBMIT")
     event.preventDefault();
 
-    // Créer un objet contenant les données du formulaire
+    // objet contenant les données du formulaire
     const formDataToSend = {
       firstname: formData.firstname,
       lastname: formData.lastname,
+      dateofbirth: formData.dateofbirth,
       email: formData.email,
       password: formData.password,
       address: formData.address,
@@ -56,37 +61,44 @@ function Inscription() {
       phone: formData.phone,
     };
 
+
+
     // Effectuer la requête d'inscription
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5080"}/Espace`,
-      {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formDataToSend),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message) {
-          setError(data.message);
+      try {
+        const response = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5080"
+          }/users`,
+          {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(formDataToSend),
+          }
+        );
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          setError(
+            errorData.message ||
+              "Une erreur s'est produite lors de l'inscription."
+          );
         } else {
-          navigate("/espace");
-          //  bibliothèque "react-toastify"  importée
-          //  configurer pour afficher  messages de réussite.
+          navigate("/");
+          // Vous pouvez également utiliser la bibliothèque "react-toastify" ici pour afficher un message de réussite.
           // toast.success("Compte créé avec succès", toastOptions);
         }
-      })
-      .catch(() => {
-        // En cas d'erreur de fetch ou autre
+      } catch (error) {
         setError("Une erreur s'est produite lors de l'inscription.");
-      });
+      }
+
 
     // Réinitialiser le formulaire après l'envoi
     setFormData({
       firstname: "",
       lastname: "",
+      dateofbirth: "",
       email: "",
       password: "",
       address: "",
@@ -126,6 +138,18 @@ function Inscription() {
                 required
               />
             </label>
+            <label>
+              <input
+                className="customer-form-container-info1"
+                type="date"
+                name="dateofbirth"
+                value={formData.dateofbirth}
+                onChange={handleInputChange}
+                placeholder="Date de naissance *"
+                required
+              />
+            </label>
+
             <label>
               <input
                 className="customer-form-container-info1"

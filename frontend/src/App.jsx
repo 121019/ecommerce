@@ -1,15 +1,16 @@
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Home from "./components/Navbar/Home";
 import Inscription from "./components/Navbar/Inscription";
 import Connexion from "./components/Navbar/Connexion";
 import Espace from "./components/Navbar/Espace";
-import Contact from "./components/Navbar/Contact";
+import Contact from "./components/Footer/Contact";
 import Shopping from "./components/Navbar/Shopping";
 import Articles from "./components/Navbar/Articles";
 import Whoarewe from "./components/Footer/Whoarewe";
 import ConditionsGenerales from "./components/Footer/ConditionsGenerales";
+
 import YourCommands from "./components/Navbar/YourCommands";
 import ContactDetails from "./components/Navbar/ContactDetails";
 import FavoritesArticles from "./components/Navbar/FavoritesArticles";
@@ -35,13 +36,10 @@ function App() {
             element={<ConditionsGenerales />}
           />
 
-          <Route path="/vos-commandes" component={<YourCommands />} />
-          <Route path="/vos-coordonnees" component={<ContactDetails />} />
-          <Route
-            path="/vos-articles-favoris"
-            component={<FavoritesArticles />}
-          />
-          <Route path="/messages" component={<Messages />} />
+          <Route path="/vos-commandes" element={<YourCommands />} />
+          <Route path="/vos-coordonnees" element={<ContactDetails />} />
+          <Route path="/vos-articles-favoris" element={<FavoritesArticles />} />
+          <Route path="/messages" element={<Messages />} />
         </Routes>
         <Footer />
       </div>

@@ -32,7 +32,7 @@ class usersManager extends AbstractManager {
 
   find(id) {
     return this.database.query(
-      `SELECT firstname, lastname, email, adress, city, postcode, phone FROM ${this.table} WHERE id = ?`,
+      `SELECT firstname, lastname, dateofbirth, email, adress, city, postcode, phone FROM ${this.table} WHERE id = ?`,
       [id]
     );
   }
@@ -47,12 +47,13 @@ class usersManager extends AbstractManager {
     let query;
     if (users.password === "") {
       query = this.database.query(
-        `UPDATE ${this.table} SET firstname = ?, lastname = ?, email = ?, adress = ?, city = ?, postcode = ?, phone = ? WHERE id = ?`,
+        `UPDATE ${this.table} SET firstname = ?, lastname = ?, dateofbirth = ? , email = ?, password = ?, adress = ?, city = ?, postcode = ?, phone = ? WHERE id = ?`,
         [
           users.firstname,
           users.lastname,
+          users.dateofbirth,
           users.email,
-          users.cv,
+          users.password,
           users.adress,
           users.city,
           users.postcode,
@@ -66,9 +67,9 @@ class usersManager extends AbstractManager {
         [
           users.firstname,
           users.lastname,
+          users.dateofbirth,
           users.email,
           users.hashedpassword,
-          users.cv,
           users.adress,
           users.city,
           users.postcode,
@@ -78,22 +79,6 @@ class usersManager extends AbstractManager {
       );
     }
     return query;
-  }
-
-
-  async verifyUserPassword(email, password) {
-    const [rows] = await this.findByEmail(email);
-
-    if (!rows[0]) {
-      console.error("users not found");
-      return false;
-    }
-
-    const candidat = rows[0];
-
-    const isPasswordValid = await verifyPassword(users.password, password);
-
-    return isPasswordValid;
   }
 }
 

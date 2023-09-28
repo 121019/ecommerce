@@ -1,5 +1,6 @@
 const models = require("../models");
 
+
 const browse = (req, res) => {
   models.espace
     .findAll()
@@ -31,7 +32,7 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const espace = req.body;
 
-  users.id = parseInt(req.params.id, 10);
+  espace.id = parseInt(req.params.id, 10);
 
   models.espace
     .update(espace)
@@ -48,7 +49,7 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => { 
+const add = (req, res) => {
   const espace = req.body;
 
   models.espace

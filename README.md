@@ -11,7 +11,7 @@ Be sure to run these commands in a git terminal to avoid [issues with newline fo
 
 ```
 git config --global core.eol lf
-git config --global core.autocrlf false
+git config --global core.autocrlf true
 ```
 
 ### Project Initialization

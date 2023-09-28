@@ -1,25 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
+//import { useUser } from "../contexts/UserContext";
+
 import "./Connexion.css";
 
-function Connexion({ toastOptions }) {
+function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  //const { setUser } = useUser();
 
-  const [envoiMessage, setEnvoiMessage] = useState(false);
-
-  const navigate = useNavigate();
-  const [error, setError] = useState("");
-
-  const handleForgotPassword = () => {
-    // Ajoutez ici la logique pour gérer la réinitialisation du mot de passe
-    // Par exemple, vous pouvez rediriger l'utilisateur vers une page de réinitialisation de mot de passe.
-    // navigate("/forgot-password"); // Remplacez avec votre propre gestion
-  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,47 +22,65 @@ function Connexion({ toastOptions }) {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handlechange = () => {
+    navigate("/espace");
+  };
+  const navigate = useNavigate();
+
+  const [error, setError] = useState("");
+
+
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5080"}/login`,
+
+    const formDataToSend ={
+      email: formData.email,
+      password: formData.password,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5080"}
+      /login`,
       {
         method: "post",
         headers: {
           "content-type": "application/json",
         },
-        credentials: "include",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataToSend),
       }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message) {
-          setError(data.message);
-        } else {
-          // Réinitialiser le formulaire après la connexion réussie
-          setFormData({
-            email: "",
-            password: "",
-          });
-          setEnvoiMessage(true);
+      )
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(
+          errorData.message ||
+            "Une erreur s'est produite lors de la connexion."
+        );
+      } else {
+        await response.json();
+        navigate("/espace");
+        // Vous pouvez également utiliser la bibliothèque "react-toastify" ici pour afficher un message de réussite.
+        // toast.success("Compte créé avec succès", toastOptions);
+      }
+    } catch (error) {
+      setError("Une erreur s'est produite lors de la connexion.");
 
-          toast.success("Vous êtes connecté", toastOptions);
-          navigate("/espace");
-        }
-      })
-      .catch(() => {
-        // En cas d'erreur de fetch ou autre
-        setError("Une erreur s'est produite lors de la connexion.");
-      });
+    }
+  
+     // Réinitialiser le formulaire après l'envoi
+     setFormData({
+      email: "",
+      password: "",
+    });
   };
 
   return (
     <div className="connexion_customer">
       <p>Connexion </p>
       <div className="Connexion-connexion_customer1">
-        <h4>{envoiMessage && <p>Vous êtes connecté !</p>}</h4>
 
         <div className="customerLogin_form_container1">
           <form className="connexion_form" onSubmit={handleSubmit}>
@@ -100,24 +111,27 @@ function Connexion({ toastOptions }) {
               <button
                 type="button"
                 className="forgot-password-link"
-                onClick={handleForgotPassword}
+                onClick={""}
               >
                 Mot de passe oublié ?
               </button>
             </div>
             <div className="connexion_button">
-              <button className="connexion_submitButton" type="submit">
-                Se connecter
-              </button>
+            <button className="connexion_submitButton" type="button" 
+              onClick={handlechange}>
+              Se connecter
+            </button>              
             </div>
           </form>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-Connexion.propTypes = {
+export default Login;
+
+Login.propTypes = {
   toastOptions: PropTypes.shape({
     position: PropTypes.string,
     autoClose: PropTypes.number,
@@ -129,5 +143,3 @@ Connexion.propTypes = {
     theme: PropTypes.string,
   }).isRequired,
 };
-
-export default Connexion;

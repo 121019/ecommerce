@@ -1,5 +1,6 @@
 const models = require("../models");
 
+
 const browse = (req, res) => {
   models.users
     .findAll()
@@ -54,7 +55,7 @@ const add = (req, res) => {
   models.users
     .insert(users)
     .then(([result]) => {
-      res.location(`/users/${result.insertId}`).sendStatus(201);
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -78,10 +79,24 @@ const destroy = (req, res) => {
     });
 };
 
+const login = (req, res) => {
+  const { email, password } = req.body;
+  if (email === "utilisateur@example.com" && password === "motdepasse") {
+    req.session.user = {
+      email: email,
+      password: password,
+    };
+    res.status(200).json({ message: "Connexion réussie" });
+  } else {
+    res.status(401).json({ message: "L'authentification a échoué" });
+  }
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+ login,
 };
